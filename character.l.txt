@@ -1,0 +1,19 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+
+abc     { printf("ABC"); }  // Replace "abc" with "ABC"
+.|\n    { putchar(yytext[0]); }  // Print all other characters as-is
+
+%%
+
+int main() {
+    yylex();  // Run the lexical analyzer
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}

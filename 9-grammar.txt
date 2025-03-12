@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+int check_grammar(const char *input) {
+    int i = 0, len = strlen(input);
+    if (input[i] != 'a') return 0;  
+    i++;
+    if (i < len && input[i] == 'b') {
+        i++;  
+    if (i < len && input[i] == 'd') return (i + 1 == len); 
+    } 
+    else if (i < len && input[i] == 'c') {
+        i++;  
+        return (i == len);
+    }
+    return 0; 
+}
+int main() {
+    char input[10];
+    printf("Enter a string: ");
+    scanf("%s", input);
+    if (check_grammar(input))
+        printf("Valid String as per Grammar\n");
+    else
+        printf("Invalid String as per Grammar\n");
+    return 0;
+}

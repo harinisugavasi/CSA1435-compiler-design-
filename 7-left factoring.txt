@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+void eliminate_left_factoring(char non_terminal, char common[], char alpha1[], char alpha2[]) {
+    printf("Given Production:\n");
+    printf("%c -> %s%s | %s%s\n", non_terminal, common, alpha1, common, alpha2);
+    printf("\nAfter Eliminating Left Factoring:\n");
+    printf("%c -> %s%c'\n", non_terminal, common, non_terminal);
+    printf("%c' -> %s | %s\n", non_terminal, alpha1, alpha2);
+}
+int main() {
+    char non_terminal, common[10], alpha1[10], alpha2[10];
+    printf("Enter non-terminal: ");
+    scanf(" %c", &non_terminal);
+    printf("Enter common prefix: ");
+    scanf("%s", common);
+    printf("Enter first alternative: ");
+    scanf("%s", alpha1);
+    printf("Enter second alternative: ");
+    scanf("%s", alpha2);
+    eliminate_left_factoring(non_terminal, common, alpha1, alpha2);
+    return 0;
+}

@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <ctype.h>
+char *input;
+char lookahead;
+void next() { lookahead = *input++; }
+void match(char c) { if (lookahead == c) next(); else printf("Error!\n"); }
+int expr();
+int term(); 
+int factor();
+int expr() {
+    int val = term();
+    while (lookahead == '+' || lookahead == '-') {
+        char op = lookahead; next();
+        val = (op == '+') ? val + term() : val - term();
+    }
+    return val;
+}
+int term() {
+    int val = factor();
+    while (lookahead == '*' || lookahead == '/') {
+        char op = lookahead; next();
+        val = (op == '*') ? val * factor() : val / factor();
+    }
+    return val;
+}
+int factor() {
+    int val = 0;
+    if (isdigit(lookahead)) { val = lookahead - '0'; next(); }
+    else { next(); val = expr(); match(')'); }
+    return val;
+}
+int main() {
+    char expr_str[] = "3+5*2";
+    input = expr_str; next();
+    printf("Result: %d\n", expr());
+}

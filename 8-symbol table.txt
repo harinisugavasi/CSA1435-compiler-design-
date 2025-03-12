@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>
+#define MAX 10
+typedef struct {
+    char name[20];
+    char type[10];
+} Symbol;
+Symbol table[MAX];
+int count = 0;
+void insert() {
+    if (count >= MAX) {
+        printf("Symbol table is full!\n");
+        return;
+    }
+    printf("Enter name and type: ");
+    scanf("%s %s", table[count].name, table[count].type);
+    count++;
+    printf("Inserted successfully!\n");
+}
+void search() {
+    char name[20];
+    printf("Enter name to search: ");
+    scanf("%s", name);
+    for (int i = 0; i < count; i++) {
+        if (strcmp(table[i].name, name) == 0) {
+            printf("Found: %s (%s)\n", table[i].name, table[i].type);
+            return;
+        }
+    }
+    printf("Not found!\n");
+}
+void display() {
+    if (count == 0) {
+        printf("Symbol table is empty!\n");
+        return;
+    }
+    printf("\nSymbol Table:\n");
+    for (int i = 0; i < count; i++)
+        printf("%s -> %s\n", table[i].name, table[i].type);
+}
+int main() {
+    int choice;
+    while (1) {
+        printf("\n1. Insert  2. Search  3. Display  4. Exit\nEnter choice: ");
+        scanf("%d", &choice);
+        if (choice == 1) insert();
+        else if (choice == 2) search();
+        else if (choice == 3) display();
+        else break;
+    }
+    return 0;
+}

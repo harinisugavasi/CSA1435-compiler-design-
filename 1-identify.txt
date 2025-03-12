@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <ctype.h>
+void analyze(char *s) {
+    while (*s) {
+        if (isspace(*s)) s++;
+        else if (isalpha(*s) || *s == '_') {
+            printf("Identifier: ");
+            while (isalnum(*s) || *s == '_') putchar(*s++);
+            putchar('\n');
+        } else if (isdigit(*s)) {
+            printf("Constant: ");
+            while (isdigit(*s)) putchar(*s++);
+            putchar('\n');
+        } else {
+            printf("Operator: %c\n", *s++);
+        }
+    }
+}
+int main() {
+    char input[100];
+    printf("Enter input: ");
+    fgets(input, sizeof(input), stdin);
+    analyze(input);
+    return 0;
+}

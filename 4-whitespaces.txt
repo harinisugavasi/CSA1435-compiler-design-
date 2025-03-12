@@ -1,0 +1,17 @@
+#include <stdio.h>
+void count_whitespace_newlines(const char *str) {
+    int whitespace_count = 0, newline_count = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == ' ' || str[i] == '\t')
+            whitespace_count++;
+        else if (str[i] == '\n')
+            newline_count++;
+    }
+printf("Number of whitespace characters: %d\n", whitespace_count);
+    printf("Number of newline characters: %d\n", newline_count);
+}
+int main() {
+char input[]="Hi! I'm Khethana\n Working at Microsoft\n Canada.";
+    count_whitespace_newlines(input);
+    return 0;
+}

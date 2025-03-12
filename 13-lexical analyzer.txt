@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <ctype.h>
+int main() {
+    char ch;
+    int characters = 0, words = 0, lines = 0;
+    int inWord = 0; 
+    FILE *file = fopen("input.txt", "r"); 
+    if (!file) file = stdin; 
+    while ((ch = fgetc(file)) != EOF) {
+        characters++;  
+        if (ch == '\n') lines++; 
+        if (isspace(ch)) {
+            inWord = 0; 
+        } else if (!inWord) {
+            words++; 
+        }
+    }
+printf("Characters: %d\nWords: %d\nLines: %d\n", characters, words, lines);
+    if (file != stdin) fclose(file);
+    return 0;
+}

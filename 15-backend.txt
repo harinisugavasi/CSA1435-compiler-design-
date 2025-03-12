@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string.h>
+void generateTAC(char expr[]) {
+    char op, left, right;
+    int tempVar = 1;
+    printf("Three-Address Code:\n");
+    for (int i = 0; expr[i] != '\0'; i++) {
+        if (expr[i] == '+' || expr[i] == '-' || expr[i] == '*' || expr[i] == '/') {
+            left = expr[i - 1];
+            op = expr[i];
+            right = expr[i + 1];
+            printf("t%d = %c %c %c\n", tempVar, left, op, right);
+            expr[i + 1] = 't' + tempVar; 
+            tempVar++;
+        }
+    }
+}
+int main() {
+    char expr[] = "a+b*c";  
+    generateTAC(expr);
+    return 0;
+}
